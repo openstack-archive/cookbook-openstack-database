@@ -1,0 +1,138 @@
+<%= node["openstack"]["database"]["custom_template_banner"] %>
+
+[DEFAULT]
+# Show more verbose log output (sets INFO log level output)
+verbose = <%= node["openstack"]["database"]["verbose"] %>
+
+# Show debugging output in logs (sets DEBUG log level output)
+debug = <%= node["openstack"]["database"]["debug"] %>
+
+# Address to bind the API server
+bind_host = <%= @endpoint.host %>
+
+# Port the bind the API server to
+bind_port = <%= @endpoint.port %>
+
+# Number of child processes to run
+#trove_api_workers=5
+
+# AMQP Connection info
+rabbit_host = <%= @rabbit['host'] %>
+rabbit_userid = <%= @rabbit['userid'] %>
+rabbit_password = <%= @rabbit_pass %>
+rabbit_virtual_host = <%= @rabbit['vhost'] %>
+rabbit_port = <%= @rabbit['port'] %>
+rabbit_use_ssl = <%= @rabbit['use_ssl'] %>
+rabbit_notification_topic = <%= @rabbit['notification_topic'] %>
+
+# SQLAlchemy connection string for the reference implementation
+# registry server. Any valid SQLAlchemy connection string is fine.
+# See: http://www.sqlalchemy.org/docs/05/reference/sqlalchemy/connections.html#sqlalchemy.create_engine
+# sql_connection = sqlite:///trove_test.sqlite
+sql_connection = <%= @database_connection %>
+#sql_connection = postgresql://trove:trove@localhost/trove
+
+# Period in seconds after which SQLAlchemy should reestablish its connection
+# to the database.
+#
+# MySQL uses a default `wait_timeout` of 8 hours, after which it will drop
+# idle connections. This can result in 'MySQL Gone Away' exceptions. If you
+# notice this, you can lower this value to ensure that SQLAlchemy reconnects
+# before MySQL can drop the connection.
+sql_idle_timeout = 3600
+
+#DB Api Implementation
+db_api_implementation = "trove.db.sqlalchemy.api"
+
+# Path to the extensions
+api_extensions_path = trove/extensions/routes
+
+# Configuration options for talking to nova via the novaclient.
+trove_auth_url = <%= @identity_uri %>
+nova_compute_url = <%= @compute_uri %>
+cinder_url = <%= @block_storage_uri %>
+swift_url = <%= @object_storage_uri %>
+
+# Config option for showing the IP address that nova doles out
+add_addresses = True
+network_label_regex = ^private$
+#ip_regex = ^(15.|123.)
+
+# Config options for enabling volume service
+trove_volume_support = <%= node['openstack']['database']['volume_support'] %>
+block_device_mapping = vdb
+device_path = /dev/vdb
+mount_point = /var/lib/mysql
+max_accepted_volume_size = 10
+max_instances_per_user = 5
+max_volumes_per_user = 100
+max_backups_per_user = 5
+volume_time_out=30
+
+# Config options for rate limits
+http_get_rate = 200
+http_post_rate = 200
+http_put_rate = 200
+http_delete_rate = 200
+
+# Trove DNS
+trove_dns_support = False
+dns_account_id = 123456
+dns_auth_url = <%= @identity_uri %>
+dns_username = user
+dns_passkey = password
+dns_ttl = 3600
+dns_domain_name = 'trove.com.'
+dns_domain_id = 11111111-1111-1111-1111-111111111111
+dns_driver = trove.dns.designate.driver.DesignateDriver
+dns_instance_entry_factory = trove.dns.designate.driver.DesignateInstanceEntryFactory
+dns_endpoint_url = http://127.0.0.1/v1/
+dns_service_type = dns
+
+# Taskmanager queue name
+taskmanager_queue = taskmanager
+
+# Auth
+admin_roles = admin
+
+root_on_create = False
+
+# Users to ignore for user create/list/delete operations
+ignore_users = os_admin, root
+ignore_dbs = lost+found, mysql, information_schema
+
+# Guest related conf
+agent_heartbeat_time = 10
+agent_call_low_timeout = 5
+agent_call_high_timeout = 150
+
+# Reboot time out for instances
+reboot_time_out = 60
+
+# Trove api-paste file name
+api_paste_config = api-paste.ini
+
+
+# ============ notifer queue kombu connection options ========================
+
+notifier_queue_transport = memory
+
+control_exchange = trove
+
+# ============ Logging information =============================
+log_dir = /var/log/trove
+#log_file = trove-api.log
+
+
+# ============ SSL configuration (and enablement) =============================
+# In order to enable SSL for the trove api server, uncomment
+# the cert_file and key_file - and of course have those files
+# accessible. The existance of those setting and files will
+# enable SSL.
+
+[ssl]
+
+#cert_file = /path/to/server.crt
+#key_file = /path/to/server.key
+#optional:
+#ca_file = /path/to/ca_file

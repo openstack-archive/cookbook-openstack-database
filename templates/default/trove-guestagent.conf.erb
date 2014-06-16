@@ -1,0 +1,83 @@
+<%= node["openstack"]["database"]["custom_template_banner"] %>
+
+[DEFAULT]
+# Show more verbose log output (sets INFO log level output)
+verbose = <%= node["openstack"]["database"]["verbose"] %>
+
+# Show debugging output in logs (sets DEBUG log level output)
+debug = <%= node["openstack"]["database"]["debug"] %>
+
+# Address to bind the API server
+bind_host = <%= @endpoint.host %>
+
+# Port the bind the API server to
+bind_port = <%= @endpoint.port %>
+
+# SQLAlchemy connection string for the reference implementation
+# registry server. Any valid SQLAlchemy connection string is fine.
+# See: http://www.sqlalchemy.org/docs/05/reference/sqlalchemy/connections.html#sqlalchemy.create_engine
+# sql_connection = sqlite:///trove_test.sqlite
+sql_connection = <%= @database_connection %>
+#sql_connection = postgresql://trove:trove@localhost/trove
+
+# AMQP Connection info
+rabbit_host = <%= @rabbit['host'] %>
+rabbit_userid = <%= @rabbit['userid'] %>
+rabbit_password = <%= @rabbit_pass %>
+rabbit_virtual_host = <%= @rabbit['vhost'] %>
+rabbit_port = <%= @rabbit['port'] %>
+rabbit_use_ssl = <%= @rabbit['use_ssl'] %>
+rabbit_notification_topic = <%= @rabbit['notification_topic'] %>
+
+# Path to the extensions
+api_extensions_path = trove/extensions/routes
+
+# Configuration options for talking to nova via the novaclient.
+# These options are for an admin user in your keystone config.
+# It proxies the token received from the user to send to nova via this admin users creds,
+# basically acting like the client via that proxy token.
+nova_proxy_admin_user = <%= node['openstack']['database']['nova_proxy_user'] %>
+nova_proxy_admin_pass = <%= node['openstack']['database']['nova_proxy_password'] %>
+nova_proxy_admin_tenant_name = <%= node['openstack']['database']['nova_proxy_tenant'] %>
+trove_auth_url = <%= @identity_uri %>
+swift_url = <%= @object_storage_uri %>
+
+# Datastore management implementations. Format datastore:manager.impl
+# service_registry_ext = mysql:trove.guestagent.datastore.mysql.manager.Manager, percona:trove.guestagent.datastore.mysql.manager.Manager
+
+# Root configuration
+root_grant = ALL
+root_grant_option = True
+
+#root_grant = ALTER ROUTINE, CREATE, ALTER, CREATE ROUTINE, CREATE TEMPORARY TABLES, CREATE VIEW, CREATE USER, DELETE, DROP, EVENT, EXECUTE, INDEX, INSERT, LOCK TABLES, PROCESS, REFERENCES, SELECT, SHOW DATABASES, SHOW VIEW, TRIGGER, UPDATE, USAGE
+#root_grant_option = False
+
+# used by passlib to generate root password
+#default_password_length = 36
+
+# For communicating with trove-conductor
+control_exchange = trove
+
+# ============ Logging information =============================
+log_dir = /var/log/trove
+log_file = trove-guestagent.log
+
+# Users to ignore for user create/list/delete operations
+ignore_users = os_admin
+ignore_dbs = lost+found, mysql, information_schema
+
+# Strategy information for backups
+backup_strategy = InnoBackupEx
+backup_namespace = trove.guestagent.strategies.backup.mysql_impl
+# Additional commandline options to be passed to the backup runner (by strategy). For example:
+# backup_runner_options = InnoBackupEx:--no-lock,  MySQLDump:--events --routines --triggers
+restore_namespace = trove.guestagent.strategies.restore.mysql_impl
+storage_strategy = SwiftStorage
+storage_namespace = trove.guestagent.strategies.storage.swift
+backup_swift_container = database_backups
+backup_use_gzip_compression = True
+backup_use_openssl_encryption = True
+backup_aes_cbc_key = "default_aes_cbc_key"
+backup_use_snet = False
+backup_chunk_size = 65536
+backup_segment_max_size = 2147483648

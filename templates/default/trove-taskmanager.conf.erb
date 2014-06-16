@@ -1,0 +1,131 @@
+<%= node["openstack"]["database"]["custom_template_banner"] %>
+
+[DEFAULT]
+# Show more verbose log output (sets INFO log level output)
+verbose = <%= node["openstack"]["database"]["verbose"] %>
+
+# Show debugging output in logs (sets DEBUG log level output)
+debug = <%= node["openstack"]["database"]["debug"] %>
+
+# Updates service and instance task statuses if instance failed become active
+update_status_on_fail = False
+
+# AMQP Connection info
+rabbit_host = <%= @rabbit['host'] %>
+rabbit_userid = <%= @rabbit['userid'] %>
+rabbit_password = <%= @rabbit_pass %>
+rabbit_virtual_host = <%= @rabbit['vhost'] %>
+rabbit_port = <%= @rabbit['port'] %>
+rabbit_use_ssl = <%= @rabbit['use_ssl'] %>
+rabbit_notification_topic = <%= @rabbit['notification_topic'] %>
+
+# SQLAlchemy connection string for the reference implementation
+# registry server. Any valid SQLAlchemy connection string is fine.
+# See: http://www.sqlalchemy.org/docs/05/reference/sqlalchemy/connections.html#sqlalchemy.create_engine
+sql_connection = <%= @database_connection %>
+# sql_connection = mysql://root:root@localhost/trove
+
+# Period in seconds after which SQLAlchemy should reestablish its connection
+# to the database.
+#
+# MySQL uses a default `wait_timeout` of 8 hours, after which it will drop
+# idle connections. This can result in 'MySQL Gone Away' exceptions. If you
+# notice this, you can lower this value to ensure that SQLAlchemy reconnects
+# before MySQL can drop the connection.
+sql_idle_timeout = 3600
+
+#DB Api Implementation
+db_api_implementation = trove.db.sqlalchemy.api
+
+# Configuration options for talking to nova via the novaclient.
+trove_auth_url = <%= @identity_uri %>
+nova_compute_url = <%= @compute_uri %>
+cinder_url = <%= @block_storage_uri %>
+swift_url = <%= @object_storage_uri %>
+
+# Config options for enabling volume service
+trove_volume_support = True
+block_device_mapping = vdb
+device_path = /dev/vdb
+mount_point = /var/lib/mysql
+volume_time_out=30
+server_delete_time_out=480
+
+# Configuration options for talking to nova via the novaclient.
+# These options are for an admin user in your keystone config.
+# It proxy's the token received from the user to send to nova via this admin users creds,
+# basically acting like the client via that proxy token.
+nova_proxy_admin_user = <%= node['openstack']['database']['nova_proxy_user'] %>
+nova_proxy_admin_pass = <%= node['openstack']['database']['nova_proxy_password'] %>
+nova_proxy_admin_tenant_name = <%= node['openstack']['database']['nova_proxy_tenant'] %>
+
+# Manager impl for the taskmanager
+taskmanager_manager=trove.taskmanager.manager.Manager
+
+# Manager sends Exists Notifications
+exists_notification_transformer = trove.extensions.mgmt.instances.models.NovaNotificationTransformer
+exists_notification_ticks = 30
+notification_service_id = mysql:2f3ff068-2bfb-4f70-9a9d-a6bb65bc084b
+
+# Trove DNS
+trove_dns_support = False
+dns_account_id = 123456
+dns_auth_url = http://127.0.0.1:5000/v2.0
+dns_username = user
+dns_passkey = password
+dns_ttl = 3600
+dns_domain_name = 'trove.com.'
+dns_domain_id = 11111111-1111-1111-1111-111111111111
+dns_driver = trove.dns.designate.driver.DesignateDriver
+dns_instance_entry_factory = trove.dns.designate.driver.DesignateInstanceEntryFactory
+dns_endpoint_url = http://127.0.0.1/v1/
+dns_service_type = dns
+
+# Trove Security Groups for Instances
+trove_security_groups_support = True
+trove_security_groups_rules_support = False
+trove_security_group_rule_protocol = tcp
+trove_security_group_rule_port = 3306
+trove_security_group_rule_cidr = 0.0.0.0/0
+
+# Guest related conf
+agent_heartbeat_time = 10
+agent_call_low_timeout = 5
+agent_call_high_timeout = 150
+
+# Whether to use nova's contrib api for create server with volume
+use_nova_server_volume = False
+
+# Datastore templates
+template_path = /etc/trove/templates/
+
+# ============ notifer queue kombu connection options ========================
+
+notifier_queue_transport = memory
+
+# usage notifications
+notification_driver=trove.openstack.common.notifier.rpc_notifier
+control_exchange=trove
+
+# ============ Logging information =============================
+log_dir = /var/log/trove
+#log_file = trove-taskmanager.log
+
+# ============ PyDev remote dubugging =============================
+
+# Enable or disable pydev remote debugging.
+# There are three values allowed: 'disabled', 'enabled' and 'auto'
+# If value is 'auto' tries to connect to remote debugger server,
+# but in case of error continue running with disabled debugging
+pydev_debug = disabled
+
+# remote debug server host and port options
+#pydev_debug_host = localhost
+#pydev_debug_port = 5678
+
+# path to pydevd library. It will be used if pydevd is absent in sys.path
+#pydev_path = <path>
+
+# ================= Guestagent related ========================
+#guest_config = $pybasedir/etc/trove/trove-guestagent.conf.sample
+#cloudinit_location = /etc/trove/cloudinit
