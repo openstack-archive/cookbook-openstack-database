@@ -36,7 +36,7 @@ service 'trove-taskmanager' do
 end
 
 db_user = node['openstack']['db']['database']['username']
-db_pass = get_password 'db', 'openstack-database'
+db_pass = get_password 'db', 'database'
 db_uri = db_uri('database', db_user, db_pass).to_s
 
 identity_uri = endpoint('identity-api')
