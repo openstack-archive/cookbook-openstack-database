@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the cookbook-openstack-database.
 
+## 9.0.1
+* Allow setting passwords via attributes by using the get_password method
+
 ## 9.0.0
 * Initial release of cookbook-openstack-database for Icehouse
 
