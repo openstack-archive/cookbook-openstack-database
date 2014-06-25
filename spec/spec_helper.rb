@@ -23,8 +23,9 @@ require 'chef/application'
 
 shared_context 'database-stubs' do
   before do
-    Chef::Recipe.any_instance.stub(:secret)
-      .with('secrets', 'openstack_identity_bootstrap_token').and_return('bootstrap-token')
+    Chef::Recipe.any_instance.stub(:get_password)
+      .with('token', 'openstack_identity_bootstrap_token')
+      .and_return('bootstrap-token')
     Chef::Recipe.any_instance.stub(:get_password)
       .with('user', 'guest').and_return('rabbit-pass')
     Chef::Recipe.any_instance.stub(:get_password)
