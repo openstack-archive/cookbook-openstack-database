@@ -66,9 +66,9 @@ describe 'openstack-database::identity_registration' do
           bootstrap_token: 'bootstrap-token',
           service_type: 'database',
           endpoint_region: 'RegionOne',
-          endpoint_adminurl: 'http://127.0.0.1:8779/v1.0',
-          endpoint_internalurl: 'http://127.0.0.1:8779/v1.0',
-          endpoint_publicurl: 'http://127.0.0.1:8779/v1.0'
+          endpoint_adminurl: 'http://127.0.0.1:8779/v1.0/%(tenant_id)s',
+          endpoint_internalurl: 'http://127.0.0.1:8779/v1.0/%(tenant_id)s',
+          endpoint_publicurl: 'http://127.0.0.1:8779/v1.0/%(tenant_id)s'
         )
       end
     end
