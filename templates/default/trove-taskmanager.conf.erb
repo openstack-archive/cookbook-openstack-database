@@ -44,7 +44,7 @@ cinder_url = <%= @block_storage_uri %>
 swift_url = <%= @object_storage_uri %>
 
 # Config options for enabling volume service
-trove_volume_support = True
+trove_volume_support = <%= node['openstack']['database']['volume_support'] %>
 block_device_mapping = vdb
 device_path = /dev/vdb
 mount_point = /var/lib/mysql
