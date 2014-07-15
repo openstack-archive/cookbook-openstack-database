@@ -43,7 +43,8 @@ describe 'openstack-database::taskmanager' do
        %r{^cinder_url = http://127.0.0.1:8776/v1/$},
        %r{^swift_url = http://127.0.0.1:8080/v1/$},
        %r{^dns_auth_url = http://127.0.0.1:5000/v2.0$},
-       %r{^log_dir = /var/log/trove}
+       %r{^log_dir = /var/log/trove},
+       /^trove_volume_support = true$/
       ].each do |content|
         expect(chef_run).to render_file(filename).with_content(content)
       end
