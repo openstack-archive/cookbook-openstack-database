@@ -8,3 +8,4 @@ nova_proxy_admin_pass = <%= node['openstack']['database']['nova_proxy_password']
 nova_proxy_admin_tenant_name = <%= node['openstack']['database']['nova_proxy_tenant'] %>
 sql_connection = <%= @database_connection %>
 rabbit_password = <%= @rabbit_pass %>
+log_dir = /var/log/trove
