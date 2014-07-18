@@ -5,6 +5,7 @@ This file is used to list changes made in each version of the cookbook-openstack
 ## 9.0.1
 * Allow setting passwords via attributes by using the get_password method
 * bump berkshelf to 2.0.18 to allow Supermarket support
+* fix fauxhai version for suse
 
 ## 9.0.0
 * Initial release of cookbook-openstack-database for Icehouse
