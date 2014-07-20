@@ -1,0 +1,10 @@
+Verified+2: Jenkins
+Code-Review+2: Justin Shepherd <jshepher@rackspace.com>
+Workflow+1: Justin Shepherd <jshepher@rackspace.com>
+Code-Review+2: Salman Baset <sabaset@us.ibm.com>
+Verified+1: Wherenow.org Jenkins CI <jenkins@wherenow.org>
+Submitted-by: Jenkins
+Submitted-at: Sun, 20 Jul 2014 17:46:45 +0000
+Reviewed-on: https://review.openstack.org/108115
+Project: stackforge/cookbook-openstack-database
+Branch: refs/heads/master
