@@ -8,7 +8,7 @@ verbose = <%= node["openstack"]["database"]["verbose"] %>
 debug = <%= node["openstack"]["database"]["debug"] %>
 
 # Updates service and instance task statuses if instance failed become active
-update_status_on_fail = False
+update_status_on_fail = True
 
 # AMQP Connection info
 rabbit_host = <%= @rabbit['host'] %>
