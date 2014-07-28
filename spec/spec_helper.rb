@@ -23,16 +23,16 @@ UBUNTU_OPTS = {
 
 shared_context 'database-stubs' do
   before do
-    Chef::Recipe.any_instance.stub(:get_password)
+    allow_any_instance_of(Chef::Recipe).to receive(:get_password)
       .with('token', 'openstack_identity_bootstrap_token')
       .and_return('bootstrap-token')
-    Chef::Recipe.any_instance.stub(:get_password)
+    allow_any_instance_of(Chef::Recipe).to receive(:get_password)
       .with('user', 'guest').and_return('rabbit-pass')
-    Chef::Recipe.any_instance.stub(:get_password)
+    allow_any_instance_of(Chef::Recipe).to receive(:get_password)
       .with('db', 'database').and_return('db-pass')
-    Chef::Recipe.any_instance.stub(:get_password)
+    allow_any_instance_of(Chef::Recipe).to receive(:get_password)
       .with('service', 'database').and_return('service-pass')
-    Chef::Recipe.any_instance.stub(:get_password)
+    allow_any_instance_of(Chef::Recipe).to receive(:get_password)
       .with('user', 'database').and_return('user-pass')
   end
 end

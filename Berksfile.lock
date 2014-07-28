@@ -1,0 +1,53 @@
+{
+  "sources": {
+    "openstack-database": {
+      "path": "."
+    },
+    "openstack-common": {
+      "locked_version": "9.7.0",
+      "git": "git://github.com/stackforge/cookbook-openstack-common.git",
+      "ref": "50d11569ad4223a559acfc2d84cb62c19b10e4e9"
+    },
+    "openstack-identity": {
+      "locked_version": "9.3.1",
+      "git": "git://github.com/stackforge/cookbook-openstack-identity.git",
+      "ref": "b36ad6c69fb6d3ee52beec361f15b0b711b68137"
+    },
+    "apt": {
+      "locked_version": "2.3.8"
+    },
+    "database": {
+      "locked_version": "2.2.0"
+    },
+    "mysql": {
+      "locked_version": "5.3.6"
+    },
+    "yum-mysql-community": {
+      "locked_version": "0.1.10"
+    },
+    "yum": {
+      "locked_version": "3.2.0"
+    },
+    "postgresql": {
+      "locked_version": "3.3.4"
+    },
+    "build-essential": {
+      "locked_version": "1.4.4"
+    },
+    "openssl": {
+      "locked_version": "1.1.0"
+    },
+    "aws": {
+      "locked_version": "2.1.1"
+    },
+    "xfs": {
+      "locked_version": "1.1.0"
+    },
+    "mysql-chef_gem": {
+      "locked_version": "0.0.2"
+    },
+    "yum-epel": {
+      "locked_version": "0.3.6"
+    }
+  }
+}
