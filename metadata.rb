@@ -4,7 +4,7 @@ maintainer_email 'crowbar@dell.com'
 license          'Apache 2.0'
 description      'Installs/Configures trove'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '9.0.1'
+version          '9.0.2'
 recipe           'openstack-database::identity_registration', 'Registers Trove endpoints and service with Keystone'
 recipe           'openstack-database::api', 'Installs API service'
 recipe           'openstack-database::conductor', 'Installs Conductor service'
