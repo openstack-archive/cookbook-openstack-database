@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Justin Shepherd <jshepher@rackspace.com>
+Code-Review+2: Mark Vanderwiel <vanderwl@us.ibm.com>
+Workflow+1: Mark Vanderwiel <vanderwl@us.ibm.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 29 Sep 2014 16:06:08 +0000
+Reviewed-on: https://review.openstack.org/124140
+Project: stackforge/cookbook-openstack-database
+Branch: refs/heads/stable/icehouse
