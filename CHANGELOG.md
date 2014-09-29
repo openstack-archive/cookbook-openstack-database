@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the cookbook-openstack-database.
 
+## 9.0.2
+* Updated Berksfile.lock for the UTF8 issue in common
+
 ## 9.0.1
 * Allow setting passwords via attributes by using the get_password method
 * bump berkshelf to 2.0.18 to allow Supermarket support
