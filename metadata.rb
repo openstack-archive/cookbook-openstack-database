@@ -1,6 +1,6 @@
 name             'openstack-database'
-maintainer       'SUSE Linux GmbH'
-maintainer_email 'crowbar@dell.com'
+maintainer       'openstack-chef'
+maintainer_email 'opscode-chef-openstack@googlegroups.com'
 license          'Apache 2.0'
 description      'Installs/Configures trove'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
