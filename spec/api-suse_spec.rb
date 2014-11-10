@@ -95,16 +95,11 @@ describe 'openstack-database::api' do
   describe 'database initialization' do
     let(:manage_cmd) { 'trove-manage db_sync' }
 
-    it 'runs trove-manage' do
-      expect(chef_run).to run_execute(manage_cmd).with(
+    it 'runs not trove-manage' do
+      expect(chef_run).to_not run_execute(manage_cmd).with(
         user: 'trove',
         group: 'trove'
         )
-    end
-
-    it 'restarts the trove-api service' do
-      res = chef_run.execute(manage_cmd)
-      expect(res).to notify('service[trove-api]').to(:restart)
     end
   end
 end
