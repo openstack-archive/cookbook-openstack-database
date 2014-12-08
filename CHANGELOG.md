@@ -6,6 +6,7 @@ This file is used to list changes made in each version of the cookbook-openstack
 * Upgrading to Juno
 * Upgrading berkshelf from 2.0.18 to 3.1.5
 * Bump Chef gem to 11.16
+* update cinder api url to default of v2
 
 ## 9.0.1
 * Allow setting passwords via attributes by using the get_password method

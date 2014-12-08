@@ -58,7 +58,7 @@ describe 'openstack-database::api' do
        /^rabbit_use_ssl = false$/,
        %r{^trove_auth_url = http://127.0.0.1:5000/v2.0$},
        %r{^nova_compute_url = http://127.0.0.1:8774/v2/$},
-       %r{^cinder_url = http://127.0.0.1:8776/v1/$},
+       %r{^cinder_url = http://127.0.0.1:8776/v2/$},
        %r{^swift_url = http://127.0.0.1:8080/v1/$},
        %r{^dns_auth_url = http://127.0.0.1:5000/v2.0$},
        %r{^log_dir = /var/log/trove$},
