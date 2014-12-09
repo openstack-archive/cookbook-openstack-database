@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Workflow+1: JJ Asghar <jj@getchef.com>
+Code-Review+2: Elliott Davis <elliott@excellent.io>
+Submitted-by: Jenkins
+Submitted-at: Tue, 09 Dec 2014 15:44:30 +0000
+Reviewed-on: https://review.openstack.org/140117
+Project: stackforge/cookbook-openstack-database
+Branch: refs/heads/master
