@@ -40,7 +40,7 @@ db_pass = get_password 'db', 'database'
 db_uri = db_uri('database', db_user, db_pass).to_s
 rabbit = node['openstack']['mq']['database']['rabbit']
 rabbit_pass = get_password('user', rabbit['userid'])
-identity_uri = endpoint('identity-api')
+identity_uri = internal_endpoint('identity-api')
 
 template '/etc/trove/trove-conductor.conf' do
   source 'trove-conductor.conf.erb'

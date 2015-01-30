@@ -24,14 +24,16 @@ class ::Chef::Recipe # rubocop:disable Documentation
   include ::Openstack
 end
 
-identity_admin_endpoint = endpoint 'identity-admin'
+identity_admin_endpoint = admin_endpoint 'identity-admin'
 bootstrap_token = get_password('token', 'openstack_identity_bootstrap_token')
 auth_uri = ::URI.decode identity_admin_endpoint.to_s
 service_pass = get_password 'service', 'database'
 service_user = node['openstack']['database']['service_user']
 service_role = node['openstack']['database']['service_role']
 service_tenant_name = node['openstack']['database']['service_tenant_name']
-database_service_api_endpoint = endpoint 'database-api'
+admin_database_service_api_endpoint = admin_endpoint 'database-api'
+internal_database_service_api_endpoint = internal_endpoint 'database-api'
+public_database_service_api_endpoint = public_endpoint 'database-api'
 region = node['openstack']['database']['region']
 
 # Register Service Tenant
@@ -83,9 +85,9 @@ openstack_identity_register 'Register Database Endpoint' do
   bootstrap_token bootstrap_token
   service_type 'database'
   endpoint_region region
-  endpoint_adminurl ::URI.decode database_service_api_endpoint.to_s
-  endpoint_internalurl ::URI.decode database_service_api_endpoint.to_s
-  endpoint_publicurl ::URI.decode database_service_api_endpoint.to_s
+  endpoint_adminurl ::URI.decode admin_database_service_api_endpoint.to_s
+  endpoint_internalurl ::URI.decode internal_database_service_api_endpoint.to_s
+  endpoint_publicurl ::URI.decode public_database_service_api_endpoint.to_s
 
   action :create_endpoint
 end

@@ -43,12 +43,12 @@ db_user = node['openstack']['db']['database']['username']
 db_pass = get_password 'db', 'database'
 db_uri = db_uri('database', db_user, db_pass).to_s
 
-api_endpoint = endpoint 'database-api'
+api_endpoint = internal_endpoint 'database-api'
 
-identity_uri = endpoint('identity-api')
-compute_uri = endpoint('compute-api').to_s.gsub(/%\(tenant_id\)s/, '')
-block_storage_uri = endpoint('block-storage-api').to_s.gsub(/%\(tenant_id\)s/, '')
-object_storage_uri = endpoint('object-storage-api')
+identity_uri = internal_endpoint('identity-api')
+compute_uri = internal_endpoint('compute-api').to_s.gsub(/%\(tenant_id\)s/, '')
+block_storage_uri = internal_endpoint('block-storage-api').to_s.gsub(/%\(tenant_id\)s/, '')
+object_storage_uri = internal_endpoint('object-storage-api')
 
 rabbit = node['openstack']['mq']['database']['rabbit']
 rabbit_pass = get_password('user', rabbit['userid'])
@@ -73,7 +73,7 @@ template '/etc/trove/trove.conf' do
 end
 
 admin_token = get_password('token', 'openstack_identity_bootstrap_token')
-identity_admin_uri = endpoint('identity-admin')
+identity_admin_uri = admin_endpoint('identity-admin')
 
 directory ::File.dirname(node['openstack']['database']['api']['auth']['cache_dir']) do
   owner node['openstack']['database']['user']
