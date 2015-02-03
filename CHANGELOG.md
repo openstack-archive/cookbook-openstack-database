@@ -10,6 +10,7 @@ This file is used to list changes made in each version of the cookbook-openstack
 * Run trove-manage as user, not as root
 * Skip trove-manage run on SUSE, it is run by the init scripts already
 * Use common specific_endpoint routines (bug 1412919)
+* Use identity-internal endpoint (bug 1412919)
 
 ## 9.0.1
 * Allow setting passwords via attributes by using the get_password method

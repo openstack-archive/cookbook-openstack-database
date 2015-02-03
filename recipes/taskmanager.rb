@@ -39,7 +39,7 @@ db_user = node['openstack']['db']['database']['username']
 db_pass = get_password 'db', 'database'
 db_uri = db_uri('database', db_user, db_pass).to_s
 
-identity_uri = internal_endpoint('identity-api')
+identity_uri = internal_endpoint('identity-internal')
 compute_uri = internal_endpoint('compute-api').to_s.gsub(/%\(tenant_id\)s/, '')
 block_storage_uri = internal_endpoint('block-storage-api').to_s.gsub(/%\(tenant_id\)s/, '')
 object_storage_uri = internal_endpoint('object-storage-api')
