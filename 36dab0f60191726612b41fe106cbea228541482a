@@ -1,0 +1,10 @@
+Verified+2: Jenkins
+Code-Review+2: Mark Vanderwiel <vanderwl@us.ibm.com>
+Workflow+1: Mark Vanderwiel <vanderwl@us.ibm.com>
+Code-Review+1: Vilobh Meshram <vilobhmm@yahoo-inc.com>
+Code-Review+2: Jan Klare <j.klare@x-ion.de>
+Submitted-by: Jenkins
+Submitted-at: Wed, 04 Feb 2015 15:34:10 +0000
+Reviewed-on: https://review.openstack.org/152681
+Project: stackforge/cookbook-openstack-database
+Branch: refs/heads/master
