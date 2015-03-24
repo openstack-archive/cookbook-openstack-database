@@ -41,7 +41,7 @@ describe 'openstack-database::identity_registration' do
         bootstrap_token: 'bootstrap-token',
         tenant_name: 'service',
         user_name: 'trove',
-        role_name: 'admin'
+        role_name: 'service'
       )
     end
 
