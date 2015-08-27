@@ -25,7 +25,7 @@ describe 'openstack-database::taskmanager' do
         user: 'trove',
         group: 'trove',
         mode: 0640
-        )
+      )
     end
 
     it 'has the default values for configurable attributes' do
@@ -33,7 +33,7 @@ describe 'openstack-database::taskmanager' do
        /^verbose = false$/,
        %r{^sql_connection = mysql://trove:db-pass@127.0.0.1:3306/trove\?charset=utf8},
        /^rabbit_host = 127.0.0.1$/,
-       /^rabbit_virtual_host = \/$/,
+       %r{^rabbit_virtual_host = /$},
        /^rabbit_port = 5672$/,
        /^rabbit_userid = guest$/,
        /^rabbit_password = rabbit-pass$/,

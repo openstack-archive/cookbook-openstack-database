@@ -52,7 +52,7 @@ template '/etc/trove/trove-conductor.conf' do
     identity_uri: identity_uri,
     rabbit: rabbit,
     rabbit_pass: rabbit_pass
-    )
+  )
 
   notifies :restart, 'service[trove-conductor]', :immediately
 end

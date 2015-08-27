@@ -25,7 +25,7 @@ describe 'openstack-database::conductor' do
         user: 'trove',
         group: 'trove',
         mode: 0640
-        )
+      )
     end
 
     it 'has the default values for configurable attributes' do
@@ -34,7 +34,7 @@ describe 'openstack-database::conductor' do
        %r{^sql_connection = mysql://trove:db-pass@127.0.0.1:3306/trove\?charset=utf8$},
        %r{^trove_auth_url = http://127.0.0.1:5000/v2.0$},
        /^rabbit_host = 127.0.0.1$/,
-       /^rabbit_virtual_host = \/$/,
+       %r{^rabbit_virtual_host = /$},
        /^rabbit_port = 5672$/,
        /^rabbit_userid = guest$/,
        /^rabbit_password = rabbit-pass$/,

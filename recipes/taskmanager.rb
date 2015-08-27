@@ -60,7 +60,7 @@ template '/etc/trove/trove-taskmanager.conf' do
     compute_uri: compute_uri,
     block_storage_uri: block_storage_uri,
     object_storage_uri: object_storage_uri
-    )
+  )
 
   notifies :restart, 'service[trove-taskmanager]', :immediately
 end

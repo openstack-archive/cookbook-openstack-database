@@ -30,7 +30,7 @@ describe 'openstack-database::api' do
       user: 'trove',
       group: 'trove',
       mode: 0700
-      )
+    )
   end
 
   describe 'trove.conf' do
@@ -41,7 +41,7 @@ describe 'openstack-database::api' do
         user: 'trove',
         group: 'trove',
         mode: 0640
-        )
+      )
     end
 
     it 'has the default values for configurable attributes' do
@@ -51,7 +51,7 @@ describe 'openstack-database::api' do
        /^bind_host = 127.0.0.1$/,
        /^bind_port = 8779$/,
        /^rabbit_host = 127.0.0.1$/,
-       /^rabbit_virtual_host = \/$/,
+       %r{^rabbit_virtual_host = /$},
        /^rabbit_port = 5672$/,
        /^rabbit_userid = guest$/,
        /^rabbit_password = rabbit-pass$/,
@@ -77,7 +77,7 @@ describe 'openstack-database::api' do
         user: 'trove',
         group: 'trove',
         mode: 0640
-        )
+      )
     end
 
     it 'has the default values for configurable attributes' do
@@ -99,7 +99,7 @@ describe 'openstack-database::api' do
       expect(chef_run).to_not run_execute(manage_cmd).with(
         user: 'trove',
         group: 'trove'
-        )
+      )
     end
   end
 end
