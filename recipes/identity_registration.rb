@@ -30,38 +30,38 @@ auth_uri = ::URI.decode identity_admin_endpoint.to_s
 service_pass = get_password 'service', 'database'
 service_user = node['openstack']['database']['service_user']
 service_role = node['openstack']['database']['service_role']
-service_tenant_name = node['openstack']['database']['service_tenant_name']
+service_project_name = node['openstack']['database']['service_project_name']
 admin_database_service_api_endpoint = admin_endpoint 'database-api'
 internal_database_service_api_endpoint = internal_endpoint 'database-api'
 public_database_service_api_endpoint = public_endpoint 'database-api'
 region = node['openstack']['database']['region']
 
-# Register Service Tenant
-openstack_identity_register 'Register Service Tenant' do
+# Register Service Project
+openstack_identity_register 'Register Service Project' do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
-  tenant_description 'Service Tenant'
+  project_name service_project_name
+  project_description 'Service Project'
 
-  action :create_tenant
+  action :create_project
 end
 
 # Register Service User
 openstack_identity_register 'Register Service User' do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
+  project_name service_project_name
   user_name service_user
   user_pass service_pass
 
   action :create_user
 end
 
-## Grant Service role to Service User for Service Tenant ##
-openstack_identity_register "Grant '#{service_role}' Role to Service User for Service Tenant" do
+## Grant Service role to Service User for Service Project ##
+openstack_identity_register "Grant '#{service_role}' Role to Service User for Service Project" do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
+  project_name service_project_name
   user_name service_user
   role_name service_role
 

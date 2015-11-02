@@ -47,7 +47,7 @@ end
 
 default['openstack']['database']['service_user'] = 'trove'
 default['openstack']['database']['service_role'] = 'service'
-default['openstack']['database']['service_tenant_name'] = 'service'
+default['openstack']['database']['service_project_name'] = 'service'
 default['openstack']['database']['region'] = node['openstack']['region']
 
 default['openstack']['database']['volume_support'] = true
