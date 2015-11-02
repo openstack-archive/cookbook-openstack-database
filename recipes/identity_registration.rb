@@ -40,7 +40,7 @@ region = node['openstack']['database']['region']
 openstack_identity_register 'Register Service Tenant' do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
+  project_name service_tenant_name
   tenant_description 'Service Tenant'
 
   action :create_tenant
@@ -50,7 +50,7 @@ end
 openstack_identity_register 'Register Service User' do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
+  project_name service_tenant_name
   user_name service_user
   user_pass service_pass
 
@@ -61,7 +61,7 @@ end
 openstack_identity_register "Grant '#{service_role}' Role to Service User for Service Tenant" do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
-  tenant_name service_tenant_name
+  project_name service_tenant_name
   user_name service_user
   role_name service_role
 

@@ -16,7 +16,7 @@ describe 'openstack-database::identity_registration' do
       ).with(
         auth_uri: 'http://127.0.0.1:35357/v2.0',
         bootstrap_token: 'bootstrap-token',
-        tenant_name: 'service',
+        project_name: 'service',
         tenant_description: 'Service Tenant'
       )
     end
@@ -27,7 +27,7 @@ describe 'openstack-database::identity_registration' do
       ).with(
         auth_uri: 'http://127.0.0.1:35357/v2.0',
         bootstrap_token: 'bootstrap-token',
-        tenant_name: 'service',
+        project_name: 'service',
         user_name: 'trove',
         user_pass: 'service-pass'
       )
@@ -39,7 +39,7 @@ describe 'openstack-database::identity_registration' do
       ).with(
         auth_uri: 'http://127.0.0.1:35357/v2.0',
         bootstrap_token: 'bootstrap-token',
-        tenant_name: 'service',
+        project_name: 'service',
         user_name: 'trove',
         role_name: 'service'
       )
