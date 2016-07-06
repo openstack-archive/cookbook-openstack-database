@@ -10,7 +10,8 @@ https://wiki.openstack.org/wiki/Trove
 Requirements
 ============
 
-Chef 11
+- Chef 12 or higher
+- chefdk 0.9.0 or higher
 
 Cookbooks
 ---------
