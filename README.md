@@ -10,15 +10,17 @@ https://wiki.openstack.org/wiki/Trove
 Requirements
 ============
 
-Chef 11
+- Chef 12 or higher
+- chefdk 0.9.0 or higher for tsting (also includes berkshelf for cookbook
+  dependency resolution)
 
 Cookbooks
 ---------
 
 The following cookbooks are dependencies:
 
-* openstack-common
-* openstack-identity
+* 'openstack-common', '>= 14.0.0'
+* 'openstack-identity', '>= 14.0.0'
 
 
 Usage
